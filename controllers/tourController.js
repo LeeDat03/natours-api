@@ -47,7 +47,7 @@ exports.createTour = catchAsync(async (req, res) => {
   });
 });
 
-exports.updateTour = catchAsync(async (req, res) => {
+exports.updateTour = catchAsync(async (req, res, next) => {
   const tourId = req.params.id;
   const updatedTour = await Tour.findByIdAndUpdate(tourId, req.body, {
     new: true,
@@ -66,7 +66,7 @@ exports.updateTour = catchAsync(async (req, res) => {
   });
 });
 
-exports.deleteTour = catchAsync(async (req, res) => {
+exports.deleteTour = catchAsync(async (req, res, next) => {
   const tourId = req.params.id;
 
   const tour = await Tour.findByIdAndDelete(tourId);
@@ -77,9 +77,7 @@ exports.deleteTour = catchAsync(async (req, res) => {
 
   res.status(204).json({
     status: 'success',
-    data: {
-      tour,
-    },
+    data: null,
   });
 });
 

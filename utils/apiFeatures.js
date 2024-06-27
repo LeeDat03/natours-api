@@ -11,8 +11,8 @@ class APIFeatures {
     excludedFields.forEach((el) => delete queryObj[el]);
 
     //  Advanced Filtering
-    // Replace gte, gt, lte, lt with $gte, $gt, $lte, $lt
     let queryStr = JSON.stringify(queryObj);
+    // Replace gte, gt, lte, lt with $gte, $gt, $lte, $lt
     queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
 
     this.query = this.query.find(JSON.parse(queryStr));
@@ -23,7 +23,7 @@ class APIFeatures {
   // 2 Sorting
   sort() {
     if (this.queryString.sort) {
-      const sortBy = this.query.sort.split(',').join(' ');
+      const sortBy = this.queryString.sort.split(',').join(' ');
       this.query = this.query.sort(sortBy);
     } else {
       this.query = this.query.sort('-createdAt');
