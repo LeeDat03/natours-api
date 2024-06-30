@@ -8,7 +8,7 @@ mongoose.connect(process.env.DATABASE, {}).then(() => {
   console.log('DB connection successful!');
 });
 
-const tours = fs.readFileSync(`${__dirname}/tours-simple.json`, 'utf-8');
+const tours = fs.readFileSync(`${__dirname}/tours.json`, 'utf-8');
 
 const importData = async () => {
   try {
